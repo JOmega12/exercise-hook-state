@@ -1,5 +1,12 @@
-import { ClassTrafficLight } from "./ClassTrafficLight";
-import { FunctionalTrafficLight } from "./FunctionalTrafficLight";
+import { ClassTrafficLight } from "./assets/ClassTrafficLight";
+import { FunctionalTrafficLight } from "./assets/FunctionalTrafficLight";
+
+
+const lights = [
+  {id: 1, name: 'red', backgroundColor: 'red'},
+  {id: 2, name: 'yellow', backgroundColor: 'yellow'},
+  {id: 3, name: 'green', backgroundColor: 'green'},
+]
 
 function App() {
   return (
@@ -8,10 +15,10 @@ function App() {
         <h1>Traffic light App</h1>
         <div className="container">
           <div className="left">
-            <FunctionalTrafficLight />
+            <FunctionalTrafficLight lights={lights}/>
           </div>
           <div className="right">
-            <ClassTrafficLight />
+            <ClassTrafficLight lights={lights}/>
           </div>
         </div>
       </main>
