@@ -1,48 +1,31 @@
 import { useState } from "react";
 
-export const FunctionalTrafficLight = ({lights}) => {
-
+export const FunctionalTrafficLight = ({ lights }) => {
   const [lightIndex, setLightIndex] = useState(0);
-  const currentLight = lights[lightIndex];
-  const lastLight = lightIndex === lights.length - 1;
+  const isFirstLight = lightIndex === lights.length - 3;
+  const isLastLight = lightIndex === lights.length - 1;
+  const isNextLight = lightIndex === lights.length - 2;
 
-  const increment = ()=> {
-    if (lastLight) {
-      setLightIndex(lightIndex - 2)
+  const increment = () => {
+    if (isFirstLight) {
+      setLightIndex(lightIndex + 2);
     } else {
-      setLightIndex(lightIndex + 1)
+      setLightIndex(lightIndex - 1);
     }
-  }
+  };
 
-  const backgroundColor = (color) => {
-    return currentLight.name === color ? color : 'black';
-  }
-
-   return (
-     <div className="traffic-light-box">
-       <h2>Functional Traffic Light</h2>
-       <div className="traffic-light">
-         {/* Background color can be black | yellow | red | green */}
-         <div className='circle black'
-          style={{backgroundColor:backgroundColor('red')}}
-         ></div>
-         <div className="circle yellow"
-          style={{backgroundColor:backgroundColor('yellow')}}
-          ></div>
-         <div className="circle green"
-          style={{backgroundColor:backgroundColor('green')}}
-         ></div>
-       </div>
-       <button 
-        className="next-state-button"
-        onClick={increment}
-       >
+  return (
+    <div className="traffic-light-box">
+      <h2>Functional Traffic Light</h2>
+      <div className="traffic-light">
+        {/* Background color can be black | yellow | red | green */}
+        <div className={isFirstLight ? "circle red" : "circle black"}></div>
+        <div className={isNextLight ? "circle yellow" : "circle black"}></div>
+        <div className={isLastLight ? "circle green" : "circle black"}></div>
+      </div>
+      <button className="next-state-button" onClick={increment}>
         Next State
       </button>
-     </div>
-   );
- };
- 
- 
- 
- 
+    </div>
+  );
+};
